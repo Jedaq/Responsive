@@ -9,6 +9,7 @@
 <style>
 body{
     margin:0 auto;
+    height:100vh;
 }
 .col-sm{
     min-width:155px;
@@ -16,9 +17,9 @@ body{
 </style>
 </head>
 <body>
-    <audio autoplay loop controls style="display:none">
+    <audio id="backgroundAudio" controls style="display: none">
         <source src="zin.mp3" type="audio/mp3">
-        This file man!
+        Your browser does not support the audio element.
     </audio>
 <div class="container text-center pt-5 my-5">
     <div class="col-sm bg-warning text-black p-3">
@@ -38,5 +39,24 @@ body{
         </ul>
     </div>
 </div>
+<script>
+// Get the audio element
+var audio = document.getElementById('backgroundAudio');
+
+// Function to play the audio when the user scrolls
+function playAudioOnScroll() {
+    // Check if the audio is not already playing
+    if (audio.paused) {
+        // Play the audio
+        audio.play();
+        
+        // Remove the scroll event listener to prevent multiple autoplay triggers
+        window.removeEventListener('scroll', playAudioOnScroll);
+    }
+}
+
+// Add scroll event listener to trigger autoplay
+window.addEventListener('scroll', playAudioOnScroll);
+</script>
 </body>
 </html>
